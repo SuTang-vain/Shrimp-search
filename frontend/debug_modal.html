@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框调试页面</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #B85450;
+            --secondary-color: #FFFFFF;
+            --text-color: #000000;
+            --text-secondary: #666666;
+            --border-color: #E0E0E0;
+            --background-light: #F8F9FA;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-light);
+            padding: 2rem;
+        }
+
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .debug-title {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .test-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .test-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .test-btn:hover {
+            background: #9A4A46;
+        }
+
+        .debug-log {
+            background: #f4f4f4;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--secondary-color);
+            border-radius: var(--border-radius);
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-hover);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1.25rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background-color: var(--background-light);
+            color: var(--text-color);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-success {
+            background: #28a745;
+        }
+
+        .status-error {
+            background: #dc3545;
+        }
+
+        .status-warning {
+            background: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1 class="debug-title">🔧 文档管理模态框调试页面</h1>
+        
+        <div class="test-buttons">
+            <button class="test-btn" id="test-modal-btn">测试模态框显示</button>
+            <button class="test-btn" id="check-elements-btn">检查DOM元素</button>
+            <button class="test-btn" id="test-events-btn">测试事件绑定</button>
+            <button class="test-btn" id="clear-log-btn">清空日志</button>
+        </div>
+
+        <h3>调试日志:</h3>
+        <div class="debug-log" id="debug-log"></div>
+    </div>
+
+    <!-- 测试模态框 -->
+    <div id="document-management-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📁 文档管理</h3>
+                <button class="close-btn" id="close-document-modal">
+                    ✕
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>这是文档管理模态框的测试内容。</p>
+                <p>如果您能看到这个内容，说明模态框显示正常。</p>
+                <div style="margin-top: 1rem;">
+                    <button class="test-btn" onclick="debugApp.log('模态框内部按钮点击测试', 'success')">测试按钮</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class DebugApp {
+            constructor() {
+                this.logElement = document.getElementById('debug-log');
+                this.init();
+            }
+
+            init() {
+                this.log('🚀 调试应用初始化开始', 'success');
+                this.bindEvents();
+                this.checkInitialState();
+                this.log('✅ 调试应用初始化完成', 'success');
+            }
+
+            bindEvents() {
+                this.log('🔗 开始绑定事件监听器', 'info');
+                
+                // 测试模态框按钮
+                const testModalBtn = document.getElementById('test-modal-btn');
+                if (testModalBtn) {
+                    testModalBtn.addEventListener('click', () => this.testModal());
+                    this.log('✅ 测试模态框按钮事件绑定成功', 'success');
+                } else {
+                    this.log('❌ 未找到测试模态框按钮', 'error');
+                }
+
+                // 检查元素按钮
+                const checkElementsBtn = document.getElementById('check-elements-btn');
+                if (checkElementsBtn) {
+                    checkElementsBtn.addEventListener('click', () => this.checkElements());
+                    this.log('✅ 检查元素按钮事件绑定成功', 'success');
+                }
+
+                // 测试事件按钮
+                const testEventsBtn = document.getElementById('test-events-btn');
+                if (testEventsBtn) {
+                    testEventsBtn.addEventListener('click', () => this.testEvents());
+                    this.log('✅ 测试事件按钮事件绑定成功', 'success');
+                }
+
+                // 清空日志按钮
+                const clearLogBtn = document.getElementById('clear-log-btn');
+                if (clearLogBtn) {
+                    clearLogBtn.addEventListener('click', () => this.clearLog());
+                    this.log('✅ 清空日志按钮事件绑定成功', 'success');
+                }
+
+                // 模态框关闭按钮
+                const closeBtn = document.getElementById('close-document-modal');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => this.closeModal());
+                    this.log('✅ 模态框关闭按钮事件绑定成功', 'success');
+                } else {
+                    this.log('❌ 未找到模态框关闭按钮', 'error');
+                }
+
+                // 模态框背景点击关闭
+                const modal = document.getElementById('document-management-modal');
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            this.closeModal();
+                        }
+                    });
+                    this.log('✅ 模态框背景点击事件绑定成功', 'success');
+                }
+
+                this.log('🎯 所有事件监听器绑定完成', 'success');
+            }
+
+            checkInitialState() {
+                this.log('🔍 检查初始状态', 'info');
+                
+                // 检查模态框元素
+                const modal = document.getElementById('document-management-modal');
+                if (modal) {
+                    this.log(`✅ 模态框元素存在: ${modal.tagName}`, 'success');
+                    this.log(`📊 模态框初始类名: "${modal.className}"`, 'info');
+                    this.log(`👁️ 模态框初始显示状态: ${getComputedStyle(modal).display}`, 'info');
+                } else {
+                    this.log('❌ 模态框元素不存在', 'error');
+                }
+
+                // 检查CSS变量
+                const rootStyles = getComputedStyle(document.documentElement);
+                const primaryColor = rootStyles.getPropertyValue('--primary-color').trim();
+                this.log(`🎨 CSS主色调: ${primaryColor}`, 'info');
+            }
+
+            testModal() {
+                this.log('🧪 开始测试模态框显示', 'info');
+                
+                const modal = document.getElementById('document-management-modal');
+                if (!modal) {
+                    this.log('❌ 模态框元素不存在，无法测试', 'error');
+                    return;
+                }
+
+                // 检查当前状态
+                const currentDisplay = getComputedStyle(modal).display;
+                this.log(`📊 模态框当前显示状态: ${currentDisplay}`, 'info');
+                this.log(`📊 模态框当前类名: "${modal.className}"`, 'info');
+
+                // 显示模态框
+                modal.classList.add('active');
+                
+                // 检查显示后的状态
+                setTimeout(() => {
+                    const newDisplay = getComputedStyle(modal).display;
+                    this.log(`📊 模态框显示后状态: ${newDisplay}`, 'info');
+                    this.log(`📊 模态框显示后类名: "${modal.className}"`, 'info');
+                    
+                    if (newDisplay === 'flex') {
+                        this.log('✅ 模态框显示成功！', 'success');
+                    } else {
+                        this.log('❌ 模态框显示失败', 'error');
+                    }
+                }, 100);
+            }
+
+            closeModal() {
+                this.log('🔒 关闭模态框', 'info');
+                
+                const modal = document.getElementById('document-management-modal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    this.log('✅ 模态框已关闭', 'success');
+                } else {
+                    this.log('❌ 模态框元素不存在', 'error');
+                }
+            }
+
+            checkElements() {
+                this.log('🔍 开始检查DOM元素', 'info');
+                
+                const elements = [
+                    'document-management-modal',
+                    'close-document-modal',
+                    'test-modal-btn',
+                    'debug-log'
+                ];
+
+                elements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        this.log(`✅ 元素存在: #${id} (${element.tagName})`, 'success');
+                    } else {
+                        this.log(`❌ 元素不存在: #${id}`, 'error');
+                    }
+                });
+
+                // 检查CSS类
+                const modal = document.getElementById('document-management-modal');
+                if (modal) {
+                    const computedStyle = getComputedStyle(modal);
+                    this.log(`📊 模态框计算样式:`, 'info');
+                    this.log(`   - position: ${computedStyle.position}`, 'info');
+                    this.log(`   - z-index: ${computedStyle.zIndex}`, 'info');
+                    this.log(`   - display: ${computedStyle.display}`, 'info');
+                    this.log(`   - background: ${computedStyle.background}`, 'info');
+                }
+            }
+
+            testEvents() {
+                this.log('🎯 开始测试事件系统', 'info');
+                
+                // 测试点击事件
+                const testBtn = document.getElementById('test-modal-btn');
+                if (testBtn) {
+                    this.log('🖱️ 模拟点击测试模态框按钮', 'info');
+                    testBtn.click();
+                } else {
+                    this.log('❌ 测试按钮不存在', 'error');
+                }
+
+                // 测试键盘事件
+                this.log('⌨️ 测试ESC键关闭模态框', 'info');
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeModal();
+                        this.log('✅ ESC键关闭模态框功能正常', 'success');
+                    }
+                });
+            }
+
+            clearLog() {
+                this.logElement.textContent = '';
+                this.log('🧹 日志已清空', 'info');
+            }
+
+            log(message, type = 'info') {
+                const timestamp = new Date().toLocaleTimeString();
+                const statusIcon = this.getStatusIcon(type);
+                const logEntry = `[${timestamp}] ${statusIcon} ${message}\n`;
+                
+                this.logElement.textContent += logEntry;
+                this.logElement.scrollTop = this.logElement.scrollHeight;
+                
+                // 同时输出到控制台
+                console.log(`[DebugApp] ${message}`);
+            }
+
+            getStatusIcon(type) {
+                switch(type) {
+                    case 'success': return '✅';
+                    case 'error': return '❌';
+                    case 'warning': return '⚠️';
+                    case 'info': return 'ℹ️';
+                    default: return '📝';
+                }
+            }
+        }
+
+        // 全局变量，方便在控制台调试
+        let debugApp;
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            debugApp = new DebugApp();
+        });
+
+        // 全局错误捕获
+        window.addEventListener('error', (e) => {
+            if (debugApp) {
+                debugApp.log(`💥 JavaScript错误: ${e.message}`, 'error');
+                debugApp.log(`📍 错误位置: ${e.filename}:${e.lineno}:${e.colno}`, 'error');
+            }
+        });
+
+        // 未处理的Promise拒绝
+        window.addEventListener('unhandledrejection', (e) => {
+            if (debugApp) {
+                debugApp.log(`💥 未处理的Promise拒绝: ${e.reason}`, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

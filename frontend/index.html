@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrimp Search - 智能搜索助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 主页面 -->
+        <div id="main-page" class="page active">
+            <!-- 右侧导航 -->
+            <div class="right-nav">
+                <div class="nav-item active" data-tab="chat">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat</span>
+                </div>
+                <div class="nav-item" data-tab="task">
+                    <i class="fas fa-tasks"></i>
+                    <span>Task</span>
+                </div>
+                <div class="nav-item" data-tab="history">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </div>
+            </div>
+
+            <!-- 主内容区域 -->
+            <div class="main-content">
+                <!-- 标题 -->
+                <div class="title-section">
+                    <h1 class="main-title">Shrimp Search</h1>
+                    <p class="subtitle">智能多模态检索助手</p>
+                </div>
+
+                <!-- 搜索栏 -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="search-input" placeholder="你想了解什么？" />
+                            <button id="voice-btn" class="voice-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <button id="search-btn" class="search-btn">搜索</button>
+                    </div>
+
+                    <!-- 选择器区域 -->
+                    <div class="selectors">
+                        <div class="selector-group">
+                            <label>模型选择</label>
+                    <select id="model-select">
+                        <option value="qwen2.5-72b">通义千问2.5-72B</option>
+                        <option value="qwen2.5-14b">通义千问2.5-14B</option>
+                        <option value="qwen2.5-7b">通义千问2.5-7B</option>
+                        <option value="glm4.5">GLM4.5</option>
+                        <option value="qwen2.5-7b-local">通义千问2.5-7B(本地)</option>
+                        <option value="qwen2.5-14b-local">通义千问2.5-14B(本地)</option>
+                    </select>
+                        </div>
+                        <div class="selector-group">
+                            <label>检索选择</label>
+                            <select id="search-mode">
+                                <option value="快速检索">快速检索</option>
+                                <option value="深度检索">深度检索</option>
+                                <option value="主题检索">主题检索</option>
+                                <option value="智能检索">智能检索</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 快捷功能 -->
+                <div class="quick-actions">
+                    <button class="action-btn" data-action="document-management">
+                        <i class="fas fa-folder-open"></i>
+                        <span>文档管理</span>
+                    </button>
+                    <button class="action-btn" data-action="image">
+                        <i class="fas fa-image"></i>
+                        <span>图像分析</span>
+                    </button>
+                    <button class="action-btn" data-action="latest">
+                        <i class="fas fa-newspaper"></i>
+                        <span>最新资讯</span>
+                    </button>
+                    <button class="action-btn" data-action="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>设置</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索结果页面 -->
+        <div id="search-page" class="page">
+            <!-- 左侧历史记录 -->
+            <div class="sidebar" id="history-sidebar">
+                <div class="sidebar-header">
+                    <button id="toggle-sidebar" class="toggle-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h3>历史记录</h3>
+                </div>
+                <div class="history-list">
+                    <div class="history-section">
+                        <h4>今天</h4>
+                        <div class="history-items" id="today-history">
+                            <!-- 历史记录项将通过JavaScript动态添加 -->
+                        </div>
+                    </div>
+                    <div class="history-section">
+                        <h4>昨天</h4>
+                        <div class="history-items" id="yesterday-history">
+                            <!-- 历史记录项将通过JavaScript动态添加 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中间检索过程 -->
+            <div class="search-process">
+                <div class="process-header">
+                    <div class="search-query">
+                        <i class="fas fa-search"></i>
+                        <span id="current-query">当前搜索查询</span>
+                    </div>
+                    <button id="back-to-main" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        返回
+                    </button>
+                </div>
+                
+                <div class="process-steps">
+                    <div class="step" id="step-1">
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>正在分析查询</h4>
+                            <p class="step-status">解析用户意图...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" id="step-2">
+                        <div class="step-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>检索相关文档</h4>
+                            <p class="step-status">搜索知识库...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" id="step-3">
+                        <div class="step-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>网络信息收集</h4>
+                            <p class="step-status">获取最新信息...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" id="step-4">
+                        <div class="step-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>AI分析处理</h4>
+                            <p class="step-status">生成回答...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧结果输出 -->
+            <div class="results-panel">
+                <div class="results-header">
+                    <h3>搜索结果</h3>
+                    <div class="result-actions">
+                        <button class="action-btn-small" id="export-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-btn-small" id="share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="results-content" id="results-content">
+                    <div class="result-placeholder">
+                        <i class="fas fa-hourglass-half"></i>
+                        <p>正在为您搜索相关信息...</p>
+                    </div>
+                </div>
+                
+                <div class="chat-input-section">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="follow-up-input" placeholder="继续提问..." />
+                        <button id="send-follow-up" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 文档管理模态框 -->
+    <div id="document-management-modal" class="modal">
+        <div class="modal-content document-management-content">
+            <div class="modal-header">
+                <h3>文档管理</h3>
+                <button class="close-btn" id="close-document-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- 功能选项卡 -->
+                <div class="document-tabs">
+                    <button class="tab-btn active" data-tab="upload">
+                        <i class="fas fa-upload"></i>
+                        上传文档
+                    </button>
+                    <button class="tab-btn" data-tab="list">
+                        <i class="fas fa-list"></i>
+                        文档列表
+                    </button>
+                </div>
+                
+                <!-- 上传文档面板 -->
+                <div class="tab-content active" id="upload-tab">
+                    <div class="upload-area" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>拖拽文件到此处或点击选择文件</p>
+                        <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.txt,.md">
+                    </div>
+                    <div class="upload-progress" id="upload-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p class="progress-text">上传中...</p>
+                    </div>
+                </div>
+                
+                <!-- 文档列表面板 -->
+                <div class="tab-content" id="list-tab">
+                    <div class="document-list-header">
+                        <button class="refresh-btn" id="refresh-documents">
+                            <i class="fas fa-sync-alt"></i>
+                            刷新
+                        </button>
+                    </div>
+                    <div class="document-list" id="document-list">
+                        <div class="loading-placeholder">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>加载文档列表中...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

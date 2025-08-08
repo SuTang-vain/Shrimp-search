@@ -1,0 +1,331 @@
+{
+  "report_timestamp": "2025-08-06T23:55:58.530509",
+  "system_info": {
+    "platform": "win32",
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "cpu_count": 32,
+    "memory_total_gb": 31.737354278564453,
+    "gpu_info": [
+      {
+        "id": 0,
+        "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "load": 3.0,
+        "memory_used": 5627.0,
+        "memory_total": 8188.0,
+        "memory_percent": 68.72252076209087,
+        "temperature": 54.0,
+        "cuda_memory_allocated": 1287.37109375,
+        "cuda_memory_cached": 2444.0
+      }
+    ]
+  },
+  "benchmark_summary": {
+    "document_processing": {
+      "success": true,
+      "duration": 647.0495903491974,
+      "throughput": 0.004636429795714685,
+      "latency_stats": null,
+      "error_message": ""
+    },
+    "vectorization": {
+      "success": true,
+      "duration": 0.4769582748413086,
+      "throughput": 104.83097293287506,
+      "latency_stats": null,
+      "error_message": ""
+    },
+    "query_latency": {
+      "success": false,
+      "duration": 0.0010073184967041016,
+      "throughput": 0,
+      "latency_stats": null,
+      "error_message": ""
+    }
+  },
+  "performance_monitoring": {
+    "message": "暂无性能数据"
+  },
+  "detailed_results": [
+    {
+      "test_name": "document_processing",
+      "duration": 647.0495903491974,
+      "success": true,
+      "throughput": 0.004636429795714685,
+      "latency_stats": null,
+      "resource_usage": "SystemResourceMetrics(timestamp=1754495753.354694, cpu_percent=12.5, memory_percent=53.0, memory_used_gb=16.8236083984375, memory_available_gb=14.913745880126953, disk_usage_percent=14.2, gpu_metrics=[{'id': 0, 'name': 'NVIDIA GeForce RTX 4060 Laptop GPU', 'load': 0.0, 'memory_used': 5637.0, 'memory_total': 8188.0, 'memory_percent': 68.84465070835368, 'temperature': 56.0, 'cuda_memory_allocated': 1287.37109375, 'cuda_memory_cached': 2444.0}], network_io={'bytes_sent': 229038194, 'bytes_recv': 529415948, 'packets_sent': 325414, 'packets_recv': 394966}, process_metrics={'cpu_percent': 47.8, 'memory_percent': 4.412869270100076, 'memory_info': {'rss': 1503805440, 'vms': 6077558784, 'num_page_faults': 5818078, 'peak_wset': 2197753856, 'wset': 1503805440, 'peak_paged_pool': 13662568, 'paged_pool': 8466376, 'peak_nonpaged_pool': 255440, 'nonpaged_pool': 178496, 'pagefile': 6077558784, 'peak_pagefile': 6097547264, 'private': 6077558784}, 'num_threads': 88, 'open_files': 6})",
+      "error_message": "",
+      "additional_metrics": {
+        "document_count": 3,
+        "resource_summary": {
+          "monitoring_period": {
+            "start": "2025-08-06T23:45:05.557696",
+            "end": "2025-08-06T23:55:51.913873",
+            "duration_seconds": 646.3561768531799,
+            "sample_count": 395
+          },
+          "cpu_stats": {
+            "min": 2.7,
+            "max": 35.7,
+            "avg": 12.263797468354431,
+            "median": 11.3
+          },
+          "memory_stats": {
+            "min": 51.7,
+            "max": 55.1,
+            "avg": 53.73873417721519,
+            "median": 54.1
+          },
+          "gpu_stats": {
+            "gpu_0_load": {
+              "min": 0.0,
+              "max": 100.0,
+              "avg": 8.88860759493671,
+              "median": 0.0
+            },
+            "gpu_0_memory": {
+              "min": 54.25012212994626,
+              "max": 68.73473375671715,
+              "avg": 54.72837681571673,
+              "median": 54.37225207620908
+            }
+          },
+          "current_metrics": {
+            "timestamp": 1754495753.8957958,
+            "cpu_percent": 19.9,
+            "memory_percent": 53.0,
+            "memory_used_gb": 16.83123779296875,
+            "memory_available_gb": 14.906116485595703,
+            "disk_usage_percent": 14.2,
+            "gpu_metrics": [
+              {
+                "id": 0,
+                "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+                "load": 0.0,
+                "memory_used": 5637.0,
+                "memory_total": 8188.0,
+                "memory_percent": 68.84465070835368,
+                "temperature": 56.0,
+                "cuda_memory_allocated": 1287.37109375,
+                "cuda_memory_cached": 2444.0
+              }
+            ],
+            "network_io": {
+              "bytes_sent": 229038326,
+              "bytes_recv": 529417026,
+              "packets_sent": 325416,
+              "packets_recv": 394967
+            },
+            "process_metrics": {
+              "cpu_percent": 55.2,
+              "memory_percent": 4.41470826611883,
+              "memory_info": {
+                "rss": 1504432128,
+                "vms": 6078275584,
+                "num_page_faults": 5827189,
+                "peak_wset": 2197753856,
+                "wset": 1504432128,
+                "peak_paged_pool": 13662568,
+                "paged_pool": 8466376,
+                "peak_nonpaged_pool": 255440,
+                "nonpaged_pool": 178496,
+                "pagefile": 6078275584,
+                "peak_pagefile": 6097547264,
+                "private": 6078275584
+              },
+              "num_threads": 88,
+              "open_files": 6
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_name": "vectorization",
+      "duration": 0.4769582748413086,
+      "success": true,
+      "throughput": 104.83097293287506,
+      "latency_stats": null,
+      "resource_usage": "SystemResourceMetrics(timestamp=1754495755.7285883, cpu_percent=10.5, memory_percent=53.1, memory_used_gb=16.838092803955078, memory_available_gb=14.899261474609375, disk_usage_percent=14.2, gpu_metrics=[{'id': 0, 'name': 'NVIDIA GeForce RTX 4060 Laptop GPU', 'load': 0.0, 'memory_used': 5627.0, 'memory_total': 8188.0, 'memory_percent': 68.72252076209087, 'temperature': 55.0, 'cuda_memory_allocated': 1287.37109375, 'cuda_memory_cached': 2444.0}], network_io={'bytes_sent': 229045365, 'bytes_recv': 529421720, 'packets_sent': 325425, 'packets_recv': 394975}, process_metrics={'cpu_percent': 40.2, 'memory_percent': 4.415802048064625, 'memory_info': {'rss': 1504804864, 'vms': 6078500864, 'num_page_faults': 5845693, 'peak_wset': 2197753856, 'wset': 1504804864, 'peak_paged_pool': 13662568, 'paged_pool': 8466376, 'peak_nonpaged_pool': 255440, 'nonpaged_pool': 178496, 'pagefile': 6078500864, 'peak_pagefile': 6097547264, 'private': 6078500864}, 'num_threads': 88, 'open_files': 6})",
+      "error_message": "",
+      "additional_metrics": {
+        "text_count": 50,
+        "resource_summary": {
+          "monitoring_period": {
+            "start": "2025-08-06T23:45:05.557696",
+            "end": "2025-08-06T23:55:54.314341",
+            "duration_seconds": 648.7566452026367,
+            "sample_count": 396
+          },
+          "cpu_stats": {
+            "min": 2.7,
+            "max": 35.7,
+            "avg": 12.25429292929293,
+            "median": 11.3
+          },
+          "memory_stats": {
+            "min": 51.7,
+            "max": 55.1,
+            "avg": 53.73686868686869,
+            "median": 54.1
+          },
+          "gpu_stats": {
+            "gpu_0_load": {
+              "min": 0.0,
+              "max": 100.0,
+              "avg": 8.866161616161616,
+              "median": 0.0
+            },
+            "gpu_0_memory": {
+              "min": 54.25012212994626,
+              "max": 68.8324377137274,
+              "avg": 54.76399313111575,
+              "median": 54.37225207620908
+            }
+          },
+          "current_metrics": {
+            "timestamp": 1754495756.189826,
+            "cpu_percent": 5.2,
+            "memory_percent": 53.1,
+            "memory_used_gb": 16.838130950927734,
+            "memory_available_gb": 14.899223327636719,
+            "disk_usage_percent": 14.2,
+            "gpu_metrics": [
+              {
+                "id": 0,
+                "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+                "load": 0.0,
+                "memory_used": 5627.0,
+                "memory_total": 8188.0,
+                "memory_percent": 68.72252076209087,
+                "temperature": 55.0,
+                "cuda_memory_allocated": 1287.37109375,
+                "cuda_memory_cached": 2444.0
+              }
+            ],
+            "network_io": {
+              "bytes_sent": 229048051,
+              "bytes_recv": 529421720,
+              "packets_sent": 325428,
+              "packets_recv": 394975
+            },
+            "process_metrics": {
+              "cpu_percent": 61.6,
+              "memory_percent": 4.415802048064625,
+              "memory_info": {
+                "rss": 1504804864,
+                "vms": 6078500864,
+                "num_page_faults": 5854650,
+                "peak_wset": 2197753856,
+                "wset": 1504804864,
+                "peak_paged_pool": 13662568,
+                "paged_pool": 8466376,
+                "peak_nonpaged_pool": 255440,
+                "nonpaged_pool": 178496,
+                "pagefile": 6078500864,
+                "peak_pagefile": 6097547264,
+                "private": 6078500864
+              },
+              "num_threads": 88,
+              "open_files": 6
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_name": "query_latency",
+      "duration": 0.0010073184967041016,
+      "success": false,
+      "throughput": 0,
+      "latency_stats": null,
+      "resource_usage": "SystemResourceMetrics(timestamp=1754495758.047787, cpu_percent=11.7, memory_percent=53.1, memory_used_gb=16.85306167602539, memory_available_gb=14.884292602539062, disk_usage_percent=14.2, gpu_metrics=[{'id': 0, 'name': 'NVIDIA GeForce RTX 4060 Laptop GPU', 'load': 3.0, 'memory_used': 5627.0, 'memory_total': 8188.0, 'memory_percent': 68.72252076209087, 'temperature': 54.0, 'cuda_memory_allocated': 1287.37109375, 'cuda_memory_cached': 2444.0}], network_io={'bytes_sent': 229051214, 'bytes_recv': 529425796, 'packets_sent': 325439, 'packets_recv': 394986}, process_metrics={'cpu_percent': 20.6, 'memory_percent': 4.415802048064625, 'memory_info': {'rss': 1504804864, 'vms': 6078500864, 'num_page_faults': 5872591, 'peak_wset': 2197753856, 'wset': 1504804864, 'peak_paged_pool': 13662568, 'paged_pool': 8466376, 'peak_nonpaged_pool': 255440, 'nonpaged_pool': 178496, 'pagefile': 6078500864, 'peak_pagefile': 6097547264, 'private': 6078500864}, 'num_threads': 88, 'open_files': 6})",
+      "error_message": "",
+      "additional_metrics": {
+        "query_count": 3,
+        "iterations": 5,
+        "total_queries": 0,
+        "resource_summary": {
+          "monitoring_period": {
+            "start": "2025-08-06T23:45:05.557696",
+            "end": "2025-08-06T23:55:56.617344",
+            "duration_seconds": 651.0596477985382,
+            "sample_count": 397
+          },
+          "cpu_stats": {
+            "min": 2.7,
+            "max": 35.7,
+            "avg": 12.246599496221663,
+            "median": 11.3
+          },
+          "memory_stats": {
+            "min": 51.7,
+            "max": 55.1,
+            "avg": 53.735264483627205,
+            "median": 54.1
+          },
+          "gpu_stats": {
+            "gpu_0_load": {
+              "min": 0.0,
+              "max": 100.0,
+              "avg": 8.84382871536524,
+              "median": 0.0
+            },
+            "gpu_0_memory": {
+              "min": 54.25012212994626,
+              "max": 68.8324377137274,
+              "avg": 54.79915315033735,
+              "median": 54.37225207620908
+            }
+          },
+          "current_metrics": {
+            "timestamp": 1754495758.4514465,
+            "cpu_percent": 6.0,
+            "memory_percent": 53.1,
+            "memory_used_gb": 16.850208282470703,
+            "memory_available_gb": 14.88714599609375,
+            "disk_usage_percent": 14.2,
+            "gpu_metrics": [
+              {
+                "id": 0,
+                "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+                "load": 3.0,
+                "memory_used": 5627.0,
+                "memory_total": 8188.0,
+                "memory_percent": 68.72252076209087,
+                "temperature": 54.0,
+                "cuda_memory_allocated": 1287.37109375,
+                "cuda_memory_cached": 2444.0
+              }
+            ],
+            "network_io": {
+              "bytes_sent": 229059951,
+              "bytes_recv": 529438658,
+              "packets_sent": 325480,
+              "packets_recv": 395027
+            },
+            "process_metrics": {
+              "cpu_percent": 70.3,
+              "memory_percent": 4.415741950155516,
+              "memory_info": {
+                "rss": 1504784384,
+                "vms": 6078464000,
+                "num_page_faults": 5881536,
+                "peak_wset": 2197753856,
+                "wset": 1504784384,
+                "peak_paged_pool": 13662568,
+                "paged_pool": 8466376,
+                "peak_nonpaged_pool": 255440,
+                "nonpaged_pool": 178360,
+                "pagefile": 6078464000,
+                "peak_pagefile": 6097547264,
+                "private": 6078464000
+              },
+              "num_threads": 87,
+              "open_files": 6
+            }
+          }
+        }
+      }
+    }
+  ]
+}

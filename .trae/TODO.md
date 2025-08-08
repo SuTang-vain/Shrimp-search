@@ -1,0 +1,18 @@
+# TODO:
+
+- [x] 13: 创建硬件资源占用报告生成脚本performance_benchmark.py (priority: High)
+- [x] 14: 集成CPU/GPU利用率监控 (priority: High)
+- [x] 15: 实现推理延迟和性能测试 (priority: High)
+- [x] 1: 在enhanced_document_manager.py中优化批量文档处理，实现并行处理和批量向量化 (priority: High)
+- [x] 2: 优化Enhanced_Interactive_Multimodal_RAG_v2.py中的add_documents方法，支持批量嵌入计算 (priority: High)
+- [x] 6: 创建测试页面调试前端文档管理模态框显示问题 (priority: High)
+- [x] 7: 检查并修复JavaScript事件绑定和模态框CSS样式 (priority: High)
+- [x] 9: 修复enhanced_document_manager.py中的_calculate_file_hash方法名错误 (priority: High)
+- [x] 10: 检查并修复其他可能的方法名不匹配问题 (priority: High)
+- [x] 16: 生成详细的性能报告 (priority: Medium)
+- [x] 3: 优化PDF处理逻辑，添加可选的图像和表格提取开关 (priority: Medium)
+- [x] 4: 添加文档处理进度显示和性能统计功能 (priority: Medium)
+- [x] 8: 添加调试日志并测试模态框功能 (priority: Medium)
+- [x] 11: 添加文档缓存清理功能，允许用户清空所有已缓存的文档数据 (priority: Medium)
+- [x] 12: 测试修复后的文档处理功能 (priority: Medium)
+- [x] 5: 实现文档预处理和向量化分离，支持异步处理 (priority: Low)
