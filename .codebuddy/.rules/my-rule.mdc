@@ -1,0 +1,7 @@
+# my-rule
+1.保持输出语言为中文
+2.代码书写时不加入其它的表情包或者emoji
+3.Please write tests and verify the tests by running
+ `npx jest <testfilepath> -c './jest.config.ts' --no-coverage`
+
+这是一个规则文件，用于帮助 AI 理解您的代码库和遵循项目约定。

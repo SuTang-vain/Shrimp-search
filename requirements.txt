@@ -1,0 +1,48 @@
+# 基础依赖
+requests>=2.28.0
+python-dotenv>=0.19.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+
+# 文档处理
+PyMuPDF>=1.20.0
+python-docx>=0.8.11
+openpyxl>=3.0.9
+pandas>=1.3.0
+docx2txt>=0.8
+striprtf>=0.0.12
+
+# 机器学习和嵌入
+sentence-transformers>=2.2.0
+torch>=1.12.0
+transformers>=4.20.0
+
+# 网页处理
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+selenium>=4.5.0
+duckduckgo-search>=3.8.0
+
+# 用户界面
+rich>=12.0.0
+colorama>=0.4.4
+streamlit>=1.12.0
+
+# 图像处理 (可选)
+Pillow>=9.0.0
+pytesseract>=0.3.9
+
+# PowerPoint处理
+python-pptx>=0.6.21
+
+# 其他工具
+tqdm>=4.64.0
+psutil>=5.9.0
+pathlib>=1.0.1
+
+# CAMEL框架
+camel-ai>=0.1.0
+
+# 模型服务
+modelscope>=1.9.0
+dashscope>=1.14.0
